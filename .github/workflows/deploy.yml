@@ -23,14 +23,11 @@ jobs:
             cd ~/turf/turf_backend
             git pull origin main
             
-            # Activate Virtual Environment (if using one)
-            source venv/bin/activate || echo "No virtualenv found"
-            
             # Install Dependencies
-            pip install -r requirements.txt
+            npm install
             
-            # Restart Flask app with systemd
-            sudo systemctl restart flaskapp.service
+            # Restart Node.js app using PM2 (recommended for production)
+            pm2 restart app || pm2 start app.js --name "turf_backend"
             
-            # Check Flask app status
-            sudo systemctl status flaskapp.service --no-pager
+            # Check PM2 process status
+            pm2 status turf_backend
