@@ -3,7 +3,7 @@ name: Deploy to Hostinger VPS
 on:
   push:
     branches:
-      - main  # Change to your main branch
+      - main  # Runs on push to main branch
 
 jobs:
   deploy:
@@ -22,6 +22,15 @@ jobs:
           script: |
             cd ~/turf/turf_backend
             git pull origin main
-            # docker-compose up -d --build  # If using Docker
-            # pm2 restart your-app  # If using PM2 for a Node.js app
-            # systemctl restart your-app  # If using a system service
+            
+            # Activate Virtual Environment (if using one)
+            source venv/bin/activate || echo "No virtualenv found"
+            
+            # Install Dependencies
+            pip install -r requirements.txt
+            
+            # Restart Flask app with systemd
+            sudo systemctl restart flaskapp.service
+            
+            # Check Flask app status
+            sudo systemctl status flaskapp.service --no-pager
