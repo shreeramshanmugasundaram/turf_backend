@@ -27,7 +27,7 @@ jobs:
             npm install
             
             # Restart Node.js app using PM2 (recommended for production)
-            pm2 restart app || pm2 start app.js --name "turf_backend"
+            pm2 restart server || pm2 start server.js --name "turf_backend"
             
             # Check PM2 process status
             pm2 status turf_backend

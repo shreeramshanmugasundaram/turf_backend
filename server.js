@@ -10,7 +10,7 @@ app.use(express.json()); // Parses JSON request body
 app.use(cors()); // Enables CORS
 // Sample API Route
 app.get("/", (req, res) => {
-    res.json({ message: "Welcome to my Node.js backend!" });
+    res.json({ message: "Welcome to my Node.js backend!, we are online now" });
 });
 
 // Start Server
