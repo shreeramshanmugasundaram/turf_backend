@@ -20,7 +20,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.VPS_SSH_PRIVATE_KEY }}
           script: |
-            cd ~/turf
+            cd ~/turf/turf_backend
             git pull origin main
             # docker-compose up -d --build  # If using Docker
             # pm2 restart your-app  # If using PM2 for a Node.js app
